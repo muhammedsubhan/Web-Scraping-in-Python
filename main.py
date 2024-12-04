@@ -1,21 +1,27 @@
-# import requests
-# from bs4 import BeautifulSoup
+import requests
+from bs4 import BeautifulSoup
 
-# url = "https://www.linkedin.com/in/muhammad-subhan-917b62206/"
-# response = requests.get(url)
+url = "https://subhan.vercel.app/"
+response = requests.get(url)
 
-# if response.status_code == 200:
-#     soup = BeautifulSoup(response.text, 'html.parser')
+if response.status_code == 200:
+    soup = BeautifulSoup(response.text, 'lxml')
     
-#     title = soup.title.string
-#     print("Page Title:", title)
+    title = soup.title.string
+    print("Page Title:", title)
 
-#     for link in soup.find_all('a'):
-#         print("Link:", link.get('href'))
+    for link in soup.find_all('a'):
+        print("Link:", link.get('href'))
+    
+    # link = soup.find_all('a')
+    
+    # print(link)
 
    
-#     sections = soup.find_all('section')
-#     for section in sections:
-#         print("Section content:", section.get_text(strip=True))
-# else:
-#     print(f"Failed to retrieve the website. Status code: {response.status_code}")
+    sections = soup.find_all('section')
+    for section in sections:
+        print("Section content:", section.get_text(strip=True))
+else:
+    print(f"Failed to retrieve the website. Status code: {response.status_code}")
+
+
