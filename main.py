@@ -25,7 +25,7 @@ from bs4 import BeautifulSoup
 #     print(f"Failed to retrieve the website. Status code: {response.status_code}")
 
 
-url = "https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&searchTextSrc=as&searchTextText=USA&txtKeywords=%22Software+Engineer%22%2C&txtLocation=USA"
+url = "https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&searchTextSrc=ft&searchTextText=&txtKeywords=fullstack&txtLocation=USA"
 
 response = requests.get(url)
 
@@ -34,4 +34,15 @@ if response.status_code == 200:
     
     jobs = soup.find('li',class_='clearfix job-bx wht-shd-bx')
     
-    print(jobs)
+    company_name = jobs.find('h3', class_='joblist-comp-name').text.strip()
+    keySkills = jobs.find('div', class_='more-skills-sections').text.strip()
+
+print(f"""
+=======================================
+          Job Details
+=======================================
+Company Name   : {company_name}
+Required Skills: {keySkills}
+=======================================
+""")
+
