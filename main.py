@@ -36,13 +36,15 @@ if response.status_code == 200:
     
     company_name = jobs.find('h3', class_='joblist-comp-name').text.strip()
     keySkills = jobs.find('div', class_='more-skills-sections').text.strip()
-
+    experience = jobs.find('ul', class_='top-jd-dtl mt-16 clearfix')
+    years = experience.find_all('li', class_=None)[0].text
 print(f"""
 =======================================
           Job Details
 =======================================
 Company Name   : {company_name}
 Required Skills: {keySkills}
+Exp            : {years}
 =======================================
 """)
 
